@@ -12,14 +12,14 @@
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "com-fd-djaja-sap-sac-excel",
+      "tag": "com-goverp-excel",
       "url": "https://callida-demo.github.io/widget/excel.js",
       "integrity": "",
       "ignoreIntegrity": true
     },
     {
       "kind": "styling",
-      "tag": "com-fd-djaja-sap-sac-excel-aps",
+      "tag": "com-goverp-excel-aps",
       "url": "https://callida-demo.github.io/widget/aps_excel.js",
       "integrity": "",
       "ignoreIntegrity": true
