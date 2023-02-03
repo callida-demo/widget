@@ -152,5 +152,5 @@
             }
         }
     }
-    customElements.define("com-goverp-excel-aps", ExcelAps);
+    customElements.define("com-goverp-sac-excel-aps", ExcelAps);
 })();
