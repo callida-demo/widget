@@ -220,7 +220,7 @@
         }
 
     }
-    customElements.define("com-goverp-sac-excel", Excel);
+    customElements.define("goverp-sac-excel", Excel);
 
     // UTILS
     function loadthis(that, changedProperties) {
