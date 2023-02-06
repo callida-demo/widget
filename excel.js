@@ -328,6 +328,7 @@
               if (sheetName === "Sheet1") {
                 correctsheet = true;
                 var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
+                var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
                 if (csv.length) {
                   result.push(csv);
                 }
