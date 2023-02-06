@@ -7,7 +7,8 @@
     let div;
     let widgetName;
     var Ar = [];
-
+//v0.0.1
+    
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
       <style>
@@ -196,6 +197,9 @@
             value = _result;
             console.log("unit value: " + value);
             this._export_settings.unit = value;
+            value = _filedata;
+            console.log("filedata: " + value);
+            this._export_settings.filedata = value;
         }
 
         get filedata() {
