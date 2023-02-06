@@ -159,7 +159,8 @@
             this.dispatchEvent(new CustomEvent("propertiesChanged", {
                 detail: {
                     properties: {
-                        unit: this.unit
+                        unit: this.unit,
+                        filedata: this.filedata
                     }
                 }
             }));
@@ -193,7 +194,7 @@
         }
         set unit(value) {
             value = _result;
-            console.log("value: " + value);
+            console.log("unit value: " + value);
             this._export_settings.unit = value;
         }
 
@@ -202,7 +203,7 @@
         }
         set filedata(value) {
             value = _filedata;
-            console.log("value: " + value);
+            console.log("filedata: " + value);
             this._export_settings.filedata = value;
         }
 
