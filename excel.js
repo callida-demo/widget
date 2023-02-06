@@ -329,6 +329,7 @@
                 correctsheet = true;
                 var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
                 var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+                result_final.push(sheetJson);
                 if (csv.length) {
                   result.push(csv);
                 }
@@ -344,6 +345,7 @@
               var rec_count = 0;
 
               var len = 0;
+                lengthfield = 9;
               if (lengthfield === 9) {
                 for (var i = 1; i < result.split("[$@~!~@$]").length; i++) {
                   if (result.split("[$@~!~@$]")[i].length > 0) {
