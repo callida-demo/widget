@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.0.1
+//v0.0.2
     
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -225,7 +225,8 @@
                 "icon",
                 "unit",
                 "footer",
-                "link"
+                "link",
+                "filedata"
             ];
         }
 
