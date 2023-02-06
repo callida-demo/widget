@@ -380,6 +380,7 @@
                   fU.setValue("");
                   MessageToast.show("Maximum records are 2000.");
                 } else {
+                    _result = result_final;
                   // Bind the data to the Table
                   oModel = new JSONModel();
                   oModel.setSizeLimit("5000");
@@ -393,7 +394,7 @@
                   });
                   console.log(oModel);
 
-                  _result = JSON.stringify(result_final);
+//                  _result = JSON.stringify(result_final);
 
                   that._firePropertiesChanged();
                   this.settings = {};
