@@ -2,6 +2,7 @@
     let _shadowRoot;
     let _id;
     let _result ;
+    let _filedata;
 
     let div;
     let widgetName;
@@ -32,6 +33,7 @@
             this._export_settings.subtitle = "";
             this._export_settings.icon = "";
             this._export_settings.unit = "";
+            this._export_settings.filedata = "";
             this._export_settings.footer = "";
 
             this.addEventListener("click", event => {
@@ -193,6 +195,15 @@
             value = _result;
             console.log("value: " + value);
             this._export_settings.unit = value;
+        }
+
+        get filedata() {
+            return this._export_settings.filedata;
+        }
+        set filedata(value) {
+            value = _filedata;
+            console.log("value: " + value);
+            this._export_settings.filedata = value;
         }
 
         get footer() {
@@ -383,7 +394,7 @@
                   fU.setValue("");
                   MessageToast.show("Maximum records are 2000.");
                 } else {
-//                    _result = result_final;
+                  _filedata = result_final;
                   _result = JSON.stringify(result_final);
                   // Bind the data to the Table
                   oModel = new JSONModel();
