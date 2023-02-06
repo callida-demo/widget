@@ -218,6 +218,16 @@
             this._export_settings.footer = value;
         }
 
+        getNextRow() {
+         
+            let topRow = _filedata.shift();
+            var nextRw = [];
+            for (var i = 0; i < topRow.length; i++) {
+                nextRow.push(toprow[i].toString());
+            }
+            return nextRow;
+        }
+
         static get observedAttributes() {
             return [
                 "title",
