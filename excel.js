@@ -224,10 +224,11 @@
             var nextRow = [];
             nextRow.push("next row");
             for (var i = 0; i < topRow.length; i++) {
-            //    if (typeof topRow[i] === "string") {
-            //        nextRow.push(topRow[i]);
-            //    } else {                    
-                nextRow.push(string(topRow[i]));
+               if (typeof topRow[i] === "string") {
+                    nextRow.push(topRow[i]);
+                } else {                    
+                nextRow.push(topRow[i].toString);
+                }
             }
             return nextRow;
         }
