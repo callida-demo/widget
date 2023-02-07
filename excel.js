@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.0.6
+//v0.0.7
     
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -220,17 +220,18 @@
 
         getNextRow() {
          
+            // Get the first remaining row of data.  
+            // This is an array of simple data types
             let topRow = _filedata.shift();
             var nextRow = [];
             var cell = "dummy";
-            nextRow.push("next row");
+            // Convert to strings and populate an array of strings
             for (var i = 0; i < topRow.length; i++) {
                if (typeof topRow[i] === "string") {
                     nextRow.push(topRow[i]);
                 } else {       
                     cell = String(topRow[i]);
                     nextRow.push(cell);
-//                nextRow.push(topRow[i].toString);
                 }
             }
             return nextRow;
@@ -272,7 +273,7 @@
 
   if (that._firstConnection === 0) {
     let div0 = document.createElement('div');   
-    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType=["xlsx", "xlsm"] placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     _shadowRoot.appendChild(div0);  
 //    let div0 = document.createElement('div');
 //  div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
@@ -379,6 +380,7 @@
             });
 
             if (correctsheet) {
+                _filedata = sheetJson;
               var lengthfield = result.split("[$@~!~@$]")[0].split("[#@~!~@#]").length;
               console.log("lengthfield: " + lengthfield);
 
@@ -421,7 +423,7 @@
                   fU.setValue("");
                   MessageToast.show("Maximum records are 2000.");
                 } else {
-                  _filedata = result_final.shift();
+//                  _filedata = result_final.shift();
                   _result = JSON.stringify(_filedata);
                   // Bind the data to the Table
                   oModel = new JSONModel();
