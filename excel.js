@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.0.6
+//v0.0.9
     
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -220,17 +220,18 @@
 
         getNextRow() {
          
-            let topRow = _filedata.shift();
+            var topRow = [];
+            // move the rirst row of data from the global to a local
+            topRow = _filedata.shift();
             var nextRow = [];
             var cell = "dummy";
-//            nextRow.push("next row");
+            // Convert to an array of strings
             for (var i = 0; i < topRow.length; i++) {
                if (typeof topRow[i] === "string") {
                     nextRow.push(topRow[i]);
                 } else {       
                     cell = String(topRow[i]);
                     nextRow.push(cell);
-//                nextRow.push(topRow[i].toString);
                 }
             }
             return nextRow;
