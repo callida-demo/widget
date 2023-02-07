@@ -228,8 +228,8 @@
                if (typeof topRow[i] === "string") {
                     nextRow.push(topRow[i]);
                 } else {       
-                    dummy = String(topRow[i]);
-                    nextRow.push(dummy);
+                    cell = String(topRow[i]);
+                    nextRow.push(cell);
 //                nextRow.push(topRow[i].toString);
                 }
             }
