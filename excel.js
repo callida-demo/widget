@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.0.5
+//v0.0.6
     
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -222,8 +222,9 @@
          
             let topRow = _filedata.shift();
             var nextRow = [];
+            nextRow.push("next row");
             for (var i = 0; i < topRow.length; i++) {
-                nextRow.push(toprow[i].toString());
+                nextRow.push(string(toprow[i]));
             }
             return nextRow;
         }
