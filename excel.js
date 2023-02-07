@@ -220,10 +220,11 @@
 
         getNextRow() {
          
-            var topRow = [];
             // move the rirst row of data from the global to a local
-            topRow = _filedata.shift();
+            let topRow = _filedata.shift();
             var nextRow = [];
+            if (topRow != undefined)
+            {
             var cell = "dummy";
             // Convert to an array of strings
             for (var i = 0; i < topRow.length; i++) {
@@ -233,6 +234,7 @@
                     cell = String(topRow[i]);
                     nextRow.push(cell);
                 }
+            }
             }
             return nextRow;
         }
