@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.0.9
+//v0.0.1
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -138,6 +138,7 @@
         onCustomWidgetAfterUpdate(changedProperties) {
             var that = this;
 
+            // Load script for parsing the excel file
             let xlsxjs = "https://callida-demo.github.io/widget/xlsx.js";
             async function LoadLibs() {
                 try {
@@ -194,12 +195,12 @@
             return this._export_settings.unit;
         }
         set unit(value) {
-            value = _result;
-            console.log("unit value: " + value);
-            this._export_settings.unit = value;
-            value = _filedata;
-            console.log("filedata: " + value);
-            this._export_settings.filedata = value;
+//            value = _result;
+//            console.log("unit value: " + value);
+//            this._export_settings.unit = value;
+//            value = _filedata;
+//            console.log("filedata: " + value);
+//            this._export_settings.filedata = value;
         }
 
         get filedata() {
@@ -258,7 +259,7 @@
         }
 
     }
-    customElements.define("goverp-sac-excel", Excel);
+    customElements.define("goverp-sac-excel_upload", Excel);
 
     // UTILS
     function loadthis(that, changedProperties) {
@@ -277,9 +278,6 @@
     let div0 = document.createElement('div');
     div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     _shadowRoot.appendChild(div0);
-//    let div0 = document.createElement('div');
-//  div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
-//    _shadowRoot.appendChild(div0);
 
     let div1 = document.createElement('div');
     div1.innerHTML = '<?xml version="1.0"?><script id="myXMLFragment_' + widgetName + '" type="sapui5/fragment"><core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"><SelectDialog title="Partner Number" class="sapUiPopupWithPadding"  items="{' + widgetName + '>/}" search="_handleValueHelpSearch"  confirm="_handleValueHelpClose"  cancel="_handleValueHelpClose"  multiSelect="true" showClearButton="true" rememberSelections="true"><StandardListItem icon="{' + widgetName + '>ProductPicUrl}" iconDensityAware="false" iconInset="false" title="{' + widgetName + '>partner}" description="{' + widgetName + '>partner}" /></SelectDialog></core:FragmentDefinition></script>';
