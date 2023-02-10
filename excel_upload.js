@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.1
+//v0.1.2
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -363,6 +363,7 @@
               type: 'binary'
             });
 
+            var correctsheet = false;
             workbook.SheetNames.forEach(function(sheetName) {
               if (sheetName === "Sheet1") {
                 correctsheet = true;
