@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.2
+//v0.1.3
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -366,19 +366,11 @@
               type: 'binary'
             });
 
-            // var result_final = [];
-            // var result = [];
-            var correctsheet = false;
-
             workbook.SheetNames.forEach(function(sheetName) {
               if (sheetName === "Sheet1") {
                 correctsheet = true;
-//                var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
-              // Convert the sheet to an array of simple arrays.  Inner array is the cells of a row
-                _filedata = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-//                var sheetJson2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 2 });
-//                var sheetJsonA = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: "A" });
-
+                var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+                _filedata = sheetJson;
               }
             });
 
@@ -386,29 +378,48 @@
               var lengthfield = _filedata.length;
               console.log("lengthfield: " + lengthfield);
 
-//              var total = this_.getView().byId("total");
-//              var rec_count = 0;
+              if (lengthfield >= 0) {
 
+                if (lengthfield === 0) {
+                  fU.setValue("");
+                  MessageToast.show("There is no record to be uploaded");
+                } else if (lengthfield >= 2001) {
+                  fU.setValue("");
+                  MessageToast.show("Maximum records are 2000.");
+                } else {
+                  // _filedata = result_final.shift();
+                  // _result = JSON.stringify(_filedata);
+                  // // Bind the data to the Table
+                  // oModel = new JSONModel();
+                  // oModel.setSizeLimit("5000");
+                  // oModel.setData({
+                  //   result_final: result_final
+                  // });
+                  //
+                  // var oModel1 = new sap.ui.model.json.JSONModel();
+                  // oModel1.setData({
+                  //   fname: file.name,
+                  // });
+                  // console.log(oModel);
 
-              if (lengthfield === 0) {
-                fU.setValue("");
-                MessageToast.show("There is no record to be uploaded");
-              } else if (lengthfield >= 2001) {
-                fU.setValue("");
-                MessageToast.show("Maximum records are 2000.");
+//                  _result = JSON.stringify(result_final);
+
+                  that._firePropertiesChanged();
+                  this.settings = {};
+                  this.settings.result = "";
+
+                  that.dispatchEvent(new CustomEvent("onStart", {
+                    detail: {
+                      settings: this.settings
+                    }
+                  }));
+
+                  this_.runNext();
+                  fU.setValue("");
+                }
               } else {
-                that._firePropertiesChanged();
-                this.settings = {};
-                this.settings.result = "";
-
-                that.dispatchEvent(new CustomEvent("onStart", {
-                  detail: {
-                    settings: this.settings
-                  }
-                }));
-
-                this_.runNext();
                 fU.setValue("");
+                MessageToast.show("Please upload the correct file");
               }
             } else {
               console.log("Error: wrong xlsx template");
