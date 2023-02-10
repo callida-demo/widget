@@ -348,77 +348,77 @@
 
         onValidate: function(e) {
 
-          var fU = this.getView().byId("idfileUploader");
-          var domRef = fU.getFocusDomRef();
-          var file = domRef.files[0];
-          var this_ = this;
-
-          // var oModel = new JSONModel();
-          // oModel.setData({
-          //   result_final: null
-          // });
-
-          var reader = new FileReader();
-          reader.onload = async function(e) {
-            var strCSV = e.target.result;
-
-            var workbook = XLSX.read(strCSV, {
-              type: 'binary'
-            });
-
-            // var result_final = [];
-            // var result = [];
-            var correctsheet = false;
-
-            workbook.SheetNames.forEach(function(sheetName) {
-              if (sheetName === "Sheet1") {
-                correctsheet = true;
-//                var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
-              // Convert the sheet to an array of simple arrays.  Inner array is the cells of a row
-                _filedata = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-//                var sheetJson2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 2 });
-//                var sheetJsonA = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: "A" });
-
-              }
-            });
-
-            if (correctsheet) {
-              var lengthfield = _filedata.length;
-              console.log("lengthfield: " + lengthfield);
-
-//              var total = this_.getView().byId("total");
-//              var rec_count = 0;
-
-
-              if (lengthfield === 0) {
-                fU.setValue("");
-                MessageToast.show("There is no record to be uploaded");
-              } else if (lengthfield >= 2001) {
-                fU.setValue("");
-                MessageToast.show("Maximum records are 2000.");
-              } else {
-                that._firePropertiesChanged();
-                this.settings = {};
-                this.settings.result = "";
-
-                that.dispatchEvent(new CustomEvent("onStart", {
-                  detail: {
-                    settings: this.settings
-                  }
-                }));
-
-                this_.runNext();
-                fU.setValue("");
-              }
-            } else {
-              console.log("Error: wrong xlsx template");
-              MessageToast.show("Please upload the correct file");
-            }
-          };
-
-          if (typeof file !== 'undefined') {
-            reader.readAsBinaryString(file);
-          }
+//           var fU = this.getView().byId("idfileUploader");
+//           var domRef = fU.getFocusDomRef();
+//           var file = domRef.files[0];
+//           var this_ = this;
+//
+//           // var oModel = new JSONModel();
+//           // oModel.setData({
+//           //   result_final: null
+//           // });
+//
+//           var reader = new FileReader();
+//           reader.onload = async function(e) {
+//             var strCSV = e.target.result;
+//
+//             var workbook = XLSX.read(strCSV, {
+//               type: 'binary'
+//             });
+//
+//             // var result_final = [];
+//             // var result = [];
+//             var correctsheet = false;
+//
+//             workbook.SheetNames.forEach(function(sheetName) {
+//               if (sheetName === "Sheet1") {
+//                 correctsheet = true;
+// //                var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
+//               // Convert the sheet to an array of simple arrays.  Inner array is the cells of a row
+//                 _filedata = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+// //                var sheetJson2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 2 });
+// //                var sheetJsonA = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: "A" });
+//
+//               }
+//             });
+//
+//             if (correctsheet) {
+//               var lengthfield = _filedata.length;
+//               console.log("lengthfield: " + lengthfield);
+//
+// //              var total = this_.getView().byId("total");
+// //              var rec_count = 0;
+//
+//
+//               if (lengthfield === 0) {
+//                 fU.setValue("");
+//                 MessageToast.show("There is no record to be uploaded");
+//               } else if (lengthfield >= 2001) {
+//                 fU.setValue("");
+//                 MessageToast.show("Maximum records are 2000.");
+//               } else {
+//                 that._firePropertiesChanged();
+//                 this.settings = {};
+//                 this.settings.result = "";
+//
+//                 that.dispatchEvent(new CustomEvent("onStart", {
+//                   detail: {
+//                     settings: this.settings
+//                   }
+//                 }));
+//
+//                 this_.runNext();
+//                 fU.setValue("");
+//               }
+//             } else {
+//               console.log("Error: wrong xlsx template");
+//               MessageToast.show("Please upload the correct file");
+//             }
+//           };
+//
+//           if (typeof file !== 'undefined') {
+//             reader.readAsBinaryString(file);
+//           }
         },
 
         wasteTime: function() {
