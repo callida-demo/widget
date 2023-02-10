@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.1
+//v0.1.2
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -366,102 +366,49 @@
               type: 'binary'
             });
 
-            var result_final = [];
-            var result = [];
+            // var result_final = [];
+            // var result = [];
             var correctsheet = false;
 
             workbook.SheetNames.forEach(function(sheetName) {
               if (sheetName === "Sheet1") {
                 correctsheet = true;
-                var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
-                var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-                var sheetJson2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 2 });
-                var sheetJsonA = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: "A" });
+//                var csv = XLSX.utils.sheet_to_csv(workbook.Sheets[sheetName]);
+              // Convert the sheet to an array of simple arrays.  Inner array is the cells of a row
+                _filedata = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+//                var sheetJson2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 2 });
+//                var sheetJsonA = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: "A" });
 
-                result_final.push(sheetJson);
-                if (csv.length) {
-                  result.push(csv);
-                }
-                result = result.join("[$@~!~@$]")
               }
             });
 
             if (correctsheet) {
-              var lengthfield = result.split("[$@~!~@$]")[0].split("[#@~!~@#]").length;
+              var lengthfield = _filedata.length;
               console.log("lengthfield: " + lengthfield);
 
-              var total = this_.getView().byId("total");
-              var rec_count = 0;
+//              var total = this_.getView().byId("total");
+//              var rec_count = 0;
 
-              var len = 0;
-                lengthfield = 9;
-              if (lengthfield === 9) {
-                for (var i = 1; i < result.split("[$@~!~@$]").length; i++) {
-                  if (result.split("[$@~!~@$]")[i].length > 0) {
 
-                    var rec = result.split("[$@~!~@$]")[i].split("[#@~!~@#]");
-                    if (rec.length > 0) {
-                      len = rec[0].trim().length + rec[1].trim().length + rec[2].trim().length + rec[3].trim().length + rec[4].trim().length + rec[
-                        5].trim().length + rec[6].trim().length + rec[7].trim().length + rec[8].trim().length;
-                      if (len > 0) {
-                        rec_count = rec_count + 1;
-                        result_final.push({
-                          'ID': i,
-                          'DATE': rec[0].trim(),
-                          'COUNTRY_CODE': rec[1].trim(),
-                          'COMPANY_CODE': rec[2].trim(),
-                          'TYPE': rec[3].trim(),
-                          'VALUE_DATE': rec[4].trim(),
-                          'AMOUNT': rec[5].trim().replace(/[,]/g, ""),
-                          'CURRENCY': rec[6].trim(),
-                          'COMMENTS': rec[7].trim().replace(/["'\n\r]/g, ""),
-                          'LOCK_FLAG': rec[8].trim(),
-                        });
-                      }
-                    }
-                  }
-                }
-
-                if (result_final.length === 0) {
-                  fU.setValue("");
-                  MessageToast.show("There is no record to be uploaded");
-                } else if (result_final.length >= 2001) {
-                  fU.setValue("");
-                  MessageToast.show("Maximum records are 2000.");
-                } else {
-                  _filedata = result_final.shift();
-                  _result = JSON.stringify(_filedata);
-                  // Bind the data to the Table
-                  oModel = new JSONModel();
-                  oModel.setSizeLimit("5000");
-                  oModel.setData({
-                    result_final: result_final
-                  });
-
-                  var oModel1 = new sap.ui.model.json.JSONModel();
-                  oModel1.setData({
-                    fname: file.name,
-                  });
-                  console.log(oModel);
-
-//                  _result = JSON.stringify(result_final);
-
-                  that._firePropertiesChanged();
-                  this.settings = {};
-                  this.settings.result = "";
-
-                  that.dispatchEvent(new CustomEvent("onStart", {
-                    detail: {
-                      settings: this.settings
-                    }
-                  }));
-
-                  this_.runNext();
-                  fU.setValue("");
-                }
-              } else {
+              if (lengthfield === 0) {
                 fU.setValue("");
-                MessageToast.show("Please upload the correct file");
+                MessageToast.show("There is no record to be uploaded");
+              } else if (lengthfield >= 2001) {
+                fU.setValue("");
+                MessageToast.show("Maximum records are 2000.");
+              } else {
+                that._firePropertiesChanged();
+                this.settings = {};
+                this.settings.result = "";
+
+                that.dispatchEvent(new CustomEvent("onStart", {
+                  detail: {
+                    settings: this.settings
+                  }
+                }));
+
+                this_.runNext();
+                fU.setValue("");
               }
             } else {
               console.log("Error: wrong xlsx template");
