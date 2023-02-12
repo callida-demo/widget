@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.2
+//v0.1.3
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
