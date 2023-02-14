@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.3
+//v0.1.4
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -380,12 +380,20 @@
             });
 
             var correctsheet = false;
+            var topRow = [];
             workbook.SheetNames.forEach(function(sheetName) {
-              if (sheetName === "Sheet1") {
-                correctsheet = true;
                 var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-                _filedata = sheetJson;
-              }
+                topRow = sheetJson[0];
+                if (topRow.indexOf() > 0) {
+                    correctsheet = true;
+                    _filedata = sheetJson;
+                }
+
+                // if (sheetName === "Sheet1") {
+                // correctsheet = true;
+                // var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+                // _filedata = sheetJson;
+              
             });
 
             if (correctsheet) {
