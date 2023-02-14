@@ -381,10 +381,12 @@
 
             var correctsheet = false;
             var topRow = [];
+            var numsheets = workbook.Sheets.length;
+            var sheet0 = workbook.Sheets[0];
             workbook.SheetNames.forEach(function(sheetName) {
                 var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
                 topRow = sheetJson[0];
-                if (topRow.indexOf() > 0) {
+                if (topRow.indexOf('Date') > 0) {
                     correctsheet = true;
                     _filedata = sheetJson;
                 }
