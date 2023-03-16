@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.4
+//v0.1.5
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -380,22 +380,25 @@
             });
 
             var correctsheet = false;
+            var usedsheetname = '';
             var topRow = [];
             var numsheets = workbook.Sheets.length;
             var sheet0 = workbook.Sheets[0];
             workbook.SheetNames.forEach(function(sheetName) {
+                console.log("Checking sheet" + sheetName);
                 var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
                 topRow = sheetJson[0];
-                if (topRow.indexOf('Date') > 0) {
+                if (topRow.indexOf('Date') > 0 || topRow.indexOf('Fiscal Year') > 0) {
                     correctsheet = true;
+                    usedsheetname = sheetName;
+                    _filedata = sheetJson;
+                } else if (correctsheet === false) {
+                    // Grab the first sheet anyway
+                    correctsheet = true;
+                    usedsheetname = sheetName;
                     _filedata = sheetJson;
                 }
 
-                // if (sheetName === "Sheet1") {
-                // correctsheet = true;
-                // var sheetJson = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
-                // _filedata = sheetJson;
-              
             });
 
             if (correctsheet) {
@@ -443,11 +446,11 @@
                 }
               } else {
                 fU.setValue("");
-                MessageToast.show("Please upload the correct file");
+                MessageToast.show("Worksheet " + usedsheetname + " is empty");
               }
             } else {
               console.log("Error: wrong xlsx template");
-              MessageToast.show("Please upload the correct file");
+              MessageToast.show("Wrong xlsx template - Please upload the correct file");
             }
           };
 
