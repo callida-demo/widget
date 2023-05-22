@@ -195,12 +195,6 @@
             return this._export_settings.unit;
         }
         set unit(value) {
-//            value = _result;
-//            console.log("unit value: " + value);
-//            this._export_settings.unit = value;
-//            value = _filedata;
-//            console.log("filedata: " + value);
-//            this._export_settings.filedata = value;
         }
 
         get filedata() {
@@ -208,7 +202,7 @@
         }
         set filedata(value) {
             value = _filedata;
-            console.log("filedata: " + value);
+//            console.log("filedata: " + value);
             this._export_settings.filedata = value;
         }
 
@@ -221,6 +215,13 @@
 
         getNextRow() {
 
+            // Return a row of data from the table
+            // SAC script can only deal with a single dimension array, so
+            // this method pops the top row and converts to an array of strings.
+
+            if (_filedata === undefined){  // error handling - empty file or bad call
+                return [];
+            }
             // move the rirst row of data from the global to a local
             let topRow = _filedata.shift();
             var nextRow = [];
@@ -359,8 +360,8 @@
       return Controller.extend("myView.Template", {
 
         onInit: function() {
-          console.log(that._export_settings.title);
-          console.log("widgetName:" + that.widgetName);
+        //   console.log(that._export_settings.title);
+        //   console.log("widgetName:" + that.widgetName);
 
           if (that._firstConnection === 0) {
             that._firstConnection = 1;
@@ -418,10 +419,10 @@
               if (lengthfield >= 0) {
 
                 if (lengthfield === 0) {
-                  fU.setValue("");
+                  // fU.setValue("");
                   MessageToast.show("There is no record to be uploaded");
                 } else if (lengthfield >= 2001) {
-                  fU.setValue("");
+                  // fU.setValue("");
                   MessageToast.show("Maximum records are 2000.");
                 } else {
                   // _filedata = result_final.shift();
@@ -452,14 +453,14 @@
                   }));
 
                   this_.runNext();
-                  fU.setValue("");
+                  // fU.setValue("");
                 }
               } else {
-                fU.setValue("");
+                // fU.setValue("");
                 MessageToast.show("Worksheet " + usedsheetname + " is empty");
               }
             } else {
-              console.log("Error: wrong xlsx template");
+              // console.log("Error: wrong xlsx template");
               MessageToast.show("Wrong xlsx template - Please upload the correct file");
             }
           };
@@ -513,7 +514,7 @@
             script.src = src;
 
             script.onload = () => {
-                console.log("Load: " + src);
+               // console.log("Load: " + src);
                 resolve(script);
             }
             script.onerror = () => reject(new Error(`Script load error for ${src}`));
