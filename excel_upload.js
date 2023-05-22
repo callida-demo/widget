@@ -7,7 +7,7 @@
     let div;
     let widgetName;
     var Ar = [];
-//v0.1.5
+//v0.1.6
 
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
@@ -278,10 +278,18 @@
     let div0 = document.createElement('div');
     div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' +
     widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"' +
-    ' xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader"' +
+    ' xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><VBox><u:FileUploader id="idfileUploader"' +
     ' width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="xlsx" placeholder="" style="Emphasized" change="onValidate">' +
     '</u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     _shadowRoot.appendChild(div0);
+
+    // let div0 = document.createElement('div');
+    // div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' +
+    // widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"' +
+    // ' xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader"' +
+    // ' width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="xlsx" placeholder="" style="Emphasized" change="onValidate">' +
+    // '</u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    // _shadowRoot.appendChild(div0);
 
     let div1 = document.createElement('div');
     div1.innerHTML = '<?xml version="1.0"?><script id="myXMLFragment_' + widgetName + '" type="sapui5/fragment"><core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"><SelectDialog title="Partner Number" class="sapUiPopupWithPadding"  items="{' + widgetName + '>/}" search="_handleValueHelpSearch"  confirm="_handleValueHelpClose"  cancel="_handleValueHelpClose"  multiSelect="true" showClearButton="true" rememberSelections="true"><StandardListItem icon="{' + widgetName + '>ProductPicUrl}" iconDensityAware="false" iconInset="false" title="{' + widgetName + '>partner}" description="{' + widgetName + '>partner}" /></SelectDialog></core:FragmentDefinition></script>';
@@ -361,9 +369,10 @@
 
         onValidate: function(e) {
 
-          var fU = this.getView().byId("idfileUploader");
-          var domRef = fU.getFocusDomRef();
-          var file = domRef.files[0];
+          //var fU = this.getView().byId("idfileUploader");
+          //var domRef = fU.getFocusDomRef();
+          //var file = domRef.files[0];
+          var file = e.files[0];
           var this_ = this;
 
           var oModel = new JSONModel();
@@ -473,10 +482,10 @@
     console.log("widgetName Final:" + widgetName);
     var foundIndex = Ar.findIndex(x => x.id == widgetName);
     var divfinal = Ar[foundIndex].div;
-    console.log(divfinal);
+ //   console.log(divfinal);
 
-    var mike = jQuery(divfinal).html();
-    console.log(mike);
+//    var mike = jQuery(divfinal).html();
+//    console.log(mike);
     //### THE APP: place the XMLView somewhere into DOM ###
     var oView = sap.ui.xmlview({
       viewContent: jQuery(divfinal).html(),
