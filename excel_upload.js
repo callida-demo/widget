@@ -372,7 +372,8 @@
           //var fU = this.getView().byId("idfileUploader");
           //var domRef = fU.getFocusDomRef();
           //var file = domRef.files[0];
-          var file = e.files[0];
+          var files = e.getParameter("files");
+          var file = files[0];
           var this_ = this;
 
           var oModel = new JSONModel();
