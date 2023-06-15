@@ -1,9 +1,6 @@
 (function() {
 	let template = document.createElement("template");
-	template.innerHTML = `
-	<style>
-	</style>
-	`;
+	template.innerHTML = `<style></style>`;
 	
 	class CSVDownload extends HTMLElement {
 		constructor() {
@@ -12,10 +9,8 @@
 			shadowRoot.appendChild(template.content.cloneNode(true));
 			
 			this.addEventListener("click", event => {
-				var event = new Event("onClick");
-				this.dispatchEvent(event);
+				console.log("Click");
 			});
-			this._props = {};
 		}
 		
 		onCustomWidgetBeforeUpdate(changedProperties) {
