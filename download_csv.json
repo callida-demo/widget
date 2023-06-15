@@ -1,0 +1,75 @@
+{
+  "id": "com.goverp.sac.csvdownload",
+  "version": "0.0.1",
+  "name": "csvdownload",
+  "description": "CSV Download",
+  "newInstancePrefix": "csvdownload",
+  "icon": ""
+  "eula": "",
+  "license": "",
+  "imports": [ "input-controls" ],
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "goverp-sac-csvdownload",
+      "url": "https://callida-demo.github.io/widget/csvdownload.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    },
+    {
+      "kind": "styling",
+      "tag": "goverp-sac-csvdownload-aps",
+      "url": "https://callida-demo.github.io/widget/aps_excel.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    }
+  ],
+  "properties": {
+    "metadata": {
+      "type": "string",
+      "description": "For internal use",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "description": "title",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "subtitle",
+      "default": ""
+    },
+    "icon": {
+      "type": "string",
+      "description": "icon",
+      "default": ""
+    },
+    "unit": {
+      "type": "string",
+      "description": "unit",
+      "default": ""
+    },
+    "footer": {
+      "type": "string",
+      "description": "footer",
+      "default": ""
+    }
+  },
+  "methods": {
+ 
+    "Download": {
+      "returnType": "string",
+      "description": "Download csv from table",
+      "parameters": [],
+    },
+  },
+  "events": {
+  	"onStart": {
+      "description": "Specify the SAC Script that shall be triggered when the Export process is started."
+    },
+	"onClick": {
+		"description": "Called when the user clicks the widget"
+	}
+  }
+}
