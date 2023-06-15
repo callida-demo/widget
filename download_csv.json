@@ -11,14 +11,14 @@
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "com-goverp-sac-csvdownload",
+      "tag": "goverp-sac-csvdownload",
       "url": "https://callida-demo.github.io/widget/download_csv.js",
       "integrity": "",
       "ignoreIntegrity": true
     },
     {
       "kind": "styling",
-      "tag": "com-goverp-sac-csvdownload-aps",
+      "tag": "goverp-sac-csvdownload-aps",
       "url": "https://callida-demo.github.io/widget/download_csv_styling.js",
       "integrity": "",
       "ignoreIntegrity": true
