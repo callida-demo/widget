@@ -4,22 +4,22 @@
   "name": "csvdownload",
   "description": "CSV Download",
   "newInstancePrefix": "csvdownload",
-  "icon": ""
+  "icon": "",
   "eula": "",
   "license": "",
   "imports": [ "input-controls" ],
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "goverp-sac-csvdownload",
-      "url": "https://callida-demo.github.io/widget/csvdownload.js",
+      "tag": "com-goverp-sac-csvdownload",
+      "url": "https://callida-demo.github.io/widget/download_csv.js",
       "integrity": "",
       "ignoreIntegrity": true
     },
     {
       "kind": "styling",
-      "tag": "goverp-sac-csvdownload-aps",
-      "url": "https://callida-demo.github.io/widget/aps_excel.js",
+      "tag": "com-goverp-sac-csvdownload-aps",
+      "url": "https://callida-demo.github.io/widget/download_csv_styling.js",
       "integrity": "",
       "ignoreIntegrity": true
     }
@@ -56,14 +56,14 @@
       "default": ""
     }
   },
-  "methods": {
- 
+  "methods": { 
     "Download": {
       "returnType": "string",
       "description": "Download csv from table",
       "parameters": [],
+	  "body": "return this.title;"
     },
-  },
+  }
   "events": {
   	"onStart": {
       "description": "Specify the SAC Script that shall be triggered when the Export process is started."

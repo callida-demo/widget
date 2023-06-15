@@ -22,3 +22,5 @@
 			}
 		}
 		customElements.define("goverp-sac-csvdownload", CSVDownload);
+	}
+)
