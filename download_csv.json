@@ -1,5 +1,5 @@
 {
-  "id": "com.goverp.sac.csvdownload",
+  "id": "goverp.sac.csvdownload",
   "version": "0.0.1",
   "name": "csvdownload",
   "description": "CSV Download",
@@ -63,7 +63,7 @@
       "parameters": [],
 	  "body": "return this.title;"
     },
-  }
+  },
   "events": {
   	"onStart": {
       "description": "Specify the SAC Script that shall be triggered when the Export process is started."

@@ -16,6 +16,7 @@
 				this.dispatchEvent(event);
 			});
 			this._props = {};
+		}
 		
 		onCustomWidgetBeforeUpdate(changedProperties) {
             if ("designMode" in changedProperties) {
