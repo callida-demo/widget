@@ -18,7 +18,7 @@
     },
     {
       "kind": "styling",
-      "tag": "goverp-sac-csvdownload-aps",
+      "tag": "goverp-sac-csvdownload-styling",
       "url": "https://callida-demo.github.io/widget/download_csv_styling.js",
       "integrity": "",
       "ignoreIntegrity": true

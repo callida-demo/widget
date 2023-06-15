@@ -17,8 +17,8 @@
 			constructor() {
 				super();
 				this._shadowRoot = this.attachShadow({mode: "open"});
-				this._shadowRoot = this.appendChild("template.content.cloneNode(true));
+				this._shadowRoot = this.appendChild(template.content.cloneNode(true));
 			}
 		}
-}
 	customElements.define("goverp-sac-csvdownload-styling", CSVDownloadStyling);
+	})
