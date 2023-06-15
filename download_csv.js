@@ -18,8 +18,9 @@
 			this._props = {};
 		
 		onCustomWidgetBeforeUpdate(changedProperties) {
-			this._props = { ...this._props, ...changedProperties };
-			}
+            if ("designMode" in changedProperties) {
+                this._designMode = changedProperties["designMode"];
+            }
 		}
 		customElements.define("goverp-sac-csvdownload", CSVDownload);
 	}
