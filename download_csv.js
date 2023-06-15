@@ -23,6 +23,7 @@
                 this._designMode = changedProperties["designMode"];
             }
 		}
-		customElements.define("goverp-sac-csvdownload", CSVDownload);
 	}
+	
+	customElements.define("goverp-sac-csvdownload", CSVDownload);
 })
