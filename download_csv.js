@@ -5,15 +5,10 @@
 	class CSVDownload extends HTMLElement {
 		constructor() {
 			super();
-			let shadowRoot = this.attachShadow({mode: "open"});
-			shadowRoot.appendChild(template.content.cloneNode(true));
+			this._shadowRoot = this.attachShadow({mode: "open"});
+			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
 		
-		onCustomWidgetBeforeUpdate(changedProperties) {
-            if ("designMode" in changedProperties) {
-                this._designMode = changedProperties["designMode"];
-            }
-		}
 	}	
 	customElements.define("goverp-sac-csvdownload", CSVDownload);
 })
