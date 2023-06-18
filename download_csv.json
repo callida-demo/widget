@@ -6,8 +6,9 @@
   "newInstancePrefix": "csvdownload",
   "icon": "",
   "eula": "",
-  "vender": "GOVERP",
+  "vendor": "GOVERP",
   "license": "",
+  "imports": [ "table" ],
   "webcomponents": [
     {
       "kind": "main",
@@ -19,7 +20,13 @@
   ],
   "properties": {
   },
-  "methods": { 
+  "methods": {
+		"runDownload" : {
+			"parameters": {
+				["name": "table", "type": "Table"]
+			},
+			"body": "console.log(table);"
+		}
   },
   "events": {
   }
