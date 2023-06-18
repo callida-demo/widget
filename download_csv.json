@@ -8,7 +8,6 @@
   "eula": "",
   "vender": "GOVERP",
   "license": "",
-  "imports": [ "input-controls" ],
   "webcomponents": [
     {
       "kind": "main",
@@ -19,36 +18,6 @@
     } 
   ],
   "properties": {
-    "metadata": {
-      "type": "string",
-      "description": "For internal use",
-      "default": ""
-    },
-    "title": {
-      "type": "string",
-      "description": "title",
-      "default": ""
-    },
-    "subtitle": {
-      "type": "string",
-      "description": "subtitle",
-      "default": ""
-    },
-    "icon": {
-      "type": "string",
-      "description": "icon",
-      "default": ""
-    },
-    "unit": {
-      "type": "string",
-      "description": "unit",
-      "default": ""
-    },
-    "footer": {
-      "type": "string",
-      "description": "footer",
-      "default": ""
-    }
   },
   "methods": { 
   },
