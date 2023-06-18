@@ -6,6 +6,7 @@
   "newInstancePrefix": "csvdownload",
   "icon": "",
   "eula": "",
+  "vender": "GOVERP",
   "license": "",
   "imports": [ "input-controls" ],
   "webcomponents": [
@@ -15,7 +16,7 @@
       "url": "https://callida-demo.github.io/widget/download_csv.js",
       "integrity": "",
       "ignoreIntegrity": true
-    }
+    } 
   ],
   "properties": {
     "metadata": {
@@ -55,7 +56,7 @@
       "description": "Download csv from table",
       "parameters": [],
 	  "body": "return this.title;"
-    },
+    }
   },
   "events": {
   	"onStart": {
