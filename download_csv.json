@@ -51,19 +51,7 @@
     }
   },
   "methods": { 
-    "Download": {
-      "returnType": "string",
-      "description": "Download csv from table",
-      "parameters": [],
-	  "body": "return this.title;"
-    }
   },
   "events": {
-  	"onStart": {
-      "description": "Specify the SAC Script that shall be triggered when the Export process is started."
-    },
-	"onClick": {
-		"description": "Called when the user clicks the widget"
-	}
   }
 }
