@@ -11,7 +11,10 @@
 		}
 		
 		runDownload(table) {
-			console.log(table.getDataSource().getResultSet())
+			
+			table.getDataSource().getResultSet().then(
+				function(value) {console.log(value);}
+			);
 			
 			//First element of the array is column headers
 			let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
