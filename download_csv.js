@@ -24,14 +24,15 @@
 			
 			console.log(_stringArray);
 			//Join into a single string
-			let csvContent = "data:text/csv;charset=utf-8," + _stringArray.join("\n");
+			//let csvContent = "data:text/csv;charset=utf-8," +     			disabled for testing Blob stuff
+			let csvContent = _stringArray.join("\n");
 
 			console.log(csvContent);
 
-			var encodedUri = encodeURIComponent(csvContent);
+			var blob = new Blob([csvContent], type: "text/csv"});
 			
-			console.log(encodedUri);
-			window.open(encodedUri);
+
+			window.open(window.URL.createObjectURL(blob));
 		}
 		});	
 	
