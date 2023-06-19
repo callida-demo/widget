@@ -23,8 +23,8 @@
 					let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
 					
 					//Create array of parsed rows
-					for (var i = 0; i < 100; i++){
-						_stringArray.push(parseRow(resultSet[i]));
+					for (result of resultSet){
+						_stringArray.push(parseRow(result));
 						console.log("Row " + i.toString() + " parsed.");
 					}
 					console.log(_stringArray);
@@ -45,13 +45,13 @@
 	function parseRow(row) {
 		let _month = "0";
 		let _program = row["GOVERP_PROGRAM"].id;
-		let _account = "1111111";
-		let _related_agency = "#";
-		let _appropriation = "#";
-		let _jurisdiction = "#";
-		let _movement_account = "#";
-		let _reasonCode = "#";
-		let _amount = "100";
+		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1];
+		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
+		let _appropriation = row["GOVERP_APPROPRIATION"].id;
+		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
+		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
+		let _reasonCode = "10";
+		let _amount = ["GOVERP_CBMSACCOUNT"].rawValue;
 
 		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];		
 		let rowString = rowElements.join(",");
