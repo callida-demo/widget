@@ -29,7 +29,7 @@
 
 			console.log(csvContent);
 
-			var blob = new Blob([csvContent], type: "text/csv"});
+			var blob = new Blob([csvContent], {type: "text/csv"});
 			
 
 			window.open(window.URL.createObjectURL(blob));
