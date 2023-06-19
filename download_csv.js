@@ -28,7 +28,7 @@
 
 			console.log(csvContent);
 
-			var encodedUri = encodeURI(csvContent);
+			var encodedUri = encodeURIComponent(csvContent);
 			
 			console.log(encodedUri);
 			window.open(encodedUri);
