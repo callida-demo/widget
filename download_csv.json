@@ -22,10 +22,7 @@
   },
   "methods": {
 		"runDownload" : {
-			"parameters": {
-				["name": "table", "type": "Table"]
-			},
-			"body": "console.log(table);"
+			"parameters": [{"name": "table", "type": "Table"}]
 		}
   },
   "events": {
