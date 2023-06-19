@@ -23,7 +23,7 @@
 			
 			
 			//Join into a single string
-			let csvContent = "data:text/csv;charset=utf-8," + _stringArray.map(e => e.join("\n");
+			let csvContent = "data:text/csv;charset=utf-8," + _stringArray.map(e => e.join("\n"));
 
 			var encodedUri = encodeUri(csvContent);
 			window.open(encodedUri);
