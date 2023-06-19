@@ -26,7 +26,11 @@
 			//Join into a single string
 			let csvContent = "data:text/csv;charset=utf-8," + _stringArray.join("\n");
 
+			console.log(csvContent);
+
 			var encodedUri = encodeURI(csvContent);
+			
+			console.log(encodedUri);
 			window.open(encodedUri);
 		}
 		});	
