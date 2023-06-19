@@ -22,8 +22,10 @@
 					//First element of the array is column headers
 					let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
 					
+					var i = 0;
 					//Create array of parsed rows
 					for (const result of resultSet){
+						i++;
 						_stringArray.push(parseRow(result));
 						console.log("Row " + i.toString() + " parsed.");
 					}
