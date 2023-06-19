@@ -11,7 +11,7 @@
 		}
 		
 		runDownload(table) {
-			console.log(table.getDataSource.getResultSet())
+			console.log(table.getDataSource().getResultSet())
 			
 			//First element of the array is column headers
 			let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
@@ -19,6 +19,7 @@
 			//Create array of parsed rows
 			for (var i = 0; i < 100; i++){
 				_stringArray.push(parseRow("1"));
+				console.log("Row " + i.toString() + " parsed.");
 			}
 			
 			
