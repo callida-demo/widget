@@ -23,7 +23,7 @@
 					let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
 					
 					//Create array of parsed rows
-					for (result of resultSet){
+					for (const result of resultSet){
 						_stringArray.push(parseRow(result));
 						console.log("Row " + i.toString() + " parsed.");
 					}
