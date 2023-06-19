@@ -26,7 +26,7 @@
 			//Join into a single string
 			let csvContent = "data:text/csv;charset=utf-8," + _stringArray.join("\n");
 
-			var encodedUri = encodeUri(csvContent);
+			var encodedUri = encodeURI(csvContent);
 			window.open(encodedUri);
 		}
 		});	
@@ -41,11 +41,11 @@
 		let _movement_account = "#";
 		let _reasonCode = "#";
 		let _amount = "100";
-		
-		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];
+
+		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];		
 		let rowString = rowElements.join(",");
 		
-		
+		return rowString;		
 	}
 	
 })();
