@@ -39,7 +39,7 @@
 							);
 						}
 						console.log(_stringArray);
-					}
+					})();
 					
 					
 					//Join into a single string
