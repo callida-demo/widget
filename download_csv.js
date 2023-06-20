@@ -60,7 +60,7 @@
 			indicator = mv_indicator;
 		}
 		
-		if (indicator === "CR" {
+		if (indicator === "CR") {
 			_amount = -_amount;
 		}
 		
