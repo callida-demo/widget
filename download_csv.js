@@ -76,7 +76,11 @@
 		}
 		
 		
-		let _month = "0";
+		let _month = row["Date"].description;
+		if (_month === '#') {
+			_month = '000';
+		}
+		_month = _month.padStart(3, '0');
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
