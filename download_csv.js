@@ -39,19 +39,21 @@
 								}
 							);
 						}
-						console.log(_stringArray);
+						console.log(_stringArray);					
+						//Join into a single string1
+						let csvContent = _stringArray.join("\n");
+
+						console.log(csvContent);
+
+						var blob = new Blob([csvContent], {type: "text/csv"});
+						console.log("Saving...");					
+
+						window.open(window.URL.createObjectURL(blob));
 					})();
 					
 					
-					//Join into a single string1
-					let csvContent = _stringArray.join("\n");
 
-					console.log(csvContent);
 
-					var blob = new Blob([csvContent], {type: "text/csv"});
-					
-
-					window.open(window.URL.createObjectURL(blob));
 			});
 		}});	
 	
