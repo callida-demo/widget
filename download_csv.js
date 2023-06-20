@@ -55,7 +55,14 @@
 		let _reasonCode = "10";
 		let _amount = row["GOVERP_CBMSACCOUNT"].rawValue;
 
-		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];		
+		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];
+
+		for (e in rowElements) {
+			if (e === "#") {
+				e = ""
+			}
+		}
+		
 		let rowString = rowElements.join(",");
 		
 		return rowString;		
