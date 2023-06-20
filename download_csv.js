@@ -31,7 +31,7 @@
 					for (const result of resultSet){
 						i++;
 						let _acc_member = await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i];
-						_stringArray.push(parseRow(result, _accmember));
+						_stringArray.push(parseRow(result, _acc_member));
 						console.log("Row " + (i+1).toString() + " parsed.");
 						);
 					}
