@@ -29,11 +29,11 @@
 					//Create array of parsed rows
 					
 					for (const result of resultSet){
-						i++;
-						let _acc_member = await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i];
+
+						let _acc_member = await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]);
 						_stringArray.push(parseRow(result, _acc_member));
 						console.log("Row " + (i+1).toString() + " parsed.");
-						);
+						i++;
 					}
 					console.log(_stringArray);
 					
