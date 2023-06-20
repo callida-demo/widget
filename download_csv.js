@@ -30,11 +30,12 @@
 					
 					(async function loop() {
 						for (const result of resultSet){
-							i++;
+
 							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
 								function(value) {
 									_stringArray.push(parseRow(result, value));
-									console.log("Row " + i.toString() + " parsed.");
+									console.log("Row " + (i+1).toString() + " parsed.");
+									i++;
 								}
 							);
 						}
