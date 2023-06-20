@@ -53,7 +53,7 @@
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
 		let _reasonCode = "10";
-		let _amount = ["GOVERP_CBMSACCOUNT"].rawValue;
+		let _amount = row["GOVERP_CBMSACCOUNT"].rawValue;
 
 		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];		
 		let rowString = rowElements.join(",");
