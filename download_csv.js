@@ -28,14 +28,18 @@
 					var i = 0;
 					//Create array of parsed rows
 					
-					for (const result of resultSet){
-
-						let _acc_member = await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]);
-						_stringArray.push(parseRow(result, _acc_member));
-						console.log("Row " + (i+1).toString() + " parsed.");
-						i++;
-					}
-					console.log(_stringArray);
+					(async function loop() {
+						for (const result of resultSet){
+							i++;
+							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
+								function(value) {
+									_stringArray.push(parseRow(result, value));
+									console.log("Row " + i.toString() + " parsed.");
+								}
+							);
+						}
+						console.log(_stringArray);
+					})();
 					
 					
 					//Join into a single string1
