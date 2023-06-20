@@ -57,9 +57,9 @@
 
 		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];
 
-		for (e in rowElements) {
-			if (e === "#") {
-				e = ""
+		for (var i = 0; i < 9; i++) {
+			if (rowElements[i] === "#") {
+				rowElements[i] = "";
 			}
 		}
 		
