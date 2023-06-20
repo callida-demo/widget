@@ -22,7 +22,11 @@
   },
   "methods": {
 		"runDownload" : {
-			"parameters": [{"name": "table", "type": "Table"}]
+			"parameters": [
+				{"name": "table", "type": "Table"},
+				{"name": "description", "type": "String"},
+				{"name": "comment", "type": "String"}
+				]
 		}
   },
   "events": {

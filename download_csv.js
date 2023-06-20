@@ -10,7 +10,7 @@
 			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
 		
-		async runDownload(table) {
+		async runDownload(table, description, comment) {
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
@@ -23,7 +23,7 @@
 					console.log(resultSet);
 					
 					//First element of the array is column headers
-					let _stringArray = ["Month, Program, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, YTD Amount, Reason Code"];
+					let _stringArray = ["Month, Program, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Adjustment Description, Cmt_Justification, YTD Amount, Reason Code"];
 					
 					var i = 0;
 					//Create array of parsed rows
@@ -58,7 +58,7 @@
 		}});	
 	
 	
-	function parseRow(row, acc_member) {
+	function parseRow(row, acc_member, description, comment) {
 
 		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
 		
@@ -78,9 +78,10 @@
 		
 		let _month = row["Date"].description;
 		if (_month === '#') {
-			_month = '000';
+			_month = '';
 		}
-		_month = _month.padStart(3, '0');
+		_month = _month.replace('P', '0'); //e.g 'P05' becomes '005'
+		
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
@@ -88,10 +89,12 @@
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
+		let _description = description;
+		let _comment = comment;
 		let _reasonCode = "1038";
 
 
-		let rowElements = [_month, _program, _account, _related_agency, _spp, _appropriation, _jurisdiction, _movement_account, _amount, _reasonCode];
+		let rowElements = [_month, _program, _account, _related_agency, _spp, _appropriation, _jurisdiction, _movement_account, _description, _comment, _amount, _reasonCode];
 
 		for (var i = 0; i < 9; i++) {
 			if (rowElements[i] === "#") {
