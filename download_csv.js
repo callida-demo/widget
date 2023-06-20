@@ -14,7 +14,7 @@
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
-			await var selections = ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
+			var selections = await ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
 			console.log(selections);
 			
 			ds.getResultSet().then(
