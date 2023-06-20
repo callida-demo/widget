@@ -59,6 +59,8 @@
 
 		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
 		
+		console.log(acc_member);
+		
 		let indicator = acc_member.properties["GOVERP_CBMSACCOUNT.INDICATOR"];
 		let mv_indicator = row["GOVERP_MOVEMENTACCOUNT"].properties["GOVERP_MOVEMENTACCOUNT.INDICATOR"];
 		
