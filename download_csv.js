@@ -41,7 +41,7 @@
 						}
 						console.log(_stringArray);					
 						//Join into a single string1
-						let csvContent = _stringArray.join("\n");
+						let csvContent = _stringArray.join("\r\n");
 
 						console.log(csvContent);
 
