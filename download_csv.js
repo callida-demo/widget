@@ -13,8 +13,10 @@
 		runDownload(table) {
 			
 			var resultSet = undefined;
+			var ds = table.getDataSource()
+			var selections = ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
 			
-			table.getDataSource().getResultSet().then(
+			ds.getResultSet().then(
 				function(value) {
 					resultSet = value;
 					console.log(resultSet);
@@ -26,7 +28,10 @@
 					//Create array of parsed rows
 					for (const result of resultSet){
 						i++;
-						_stringArray.push(parseRow(result));
+						ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
+							function(value) {
+								_stringArray.push(parseRow(result), value);
+							}
 						console.log("Row " + i.toString() + " parsed.");
 					}
 					console.log(_stringArray);
@@ -44,7 +49,22 @@
 			});
 		}});	
 	
-	function parseRow(row) {
+	function parseRow(row, acc_member) {
+
+		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
+		
+		let indicator = acc_member.properties["GOVERP_CBMSACCOUNT.INDICATOR"];
+		let mv_indicator = row["GOVERP_MOVEMENTACCOUNT"].properties["GOVERP_MOVEMENTACCOUNT.INDICATOR"];
+		
+		if (mv_indicator !== "") {
+			indicator = mv_indicator;
+		}
+		
+		if (indicator === "CR" {
+			_amount = -_amount;
+		}
+		
+		
 		let _month = "0";
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
@@ -52,8 +72,8 @@
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
-		let _reasonCode = "10";
-		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
+		let _reasonCode = "1038";
+
 
 		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];
 
