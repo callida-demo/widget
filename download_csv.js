@@ -10,11 +10,11 @@
 			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
 		
-		runDownload(table) {
+		async runDownload(table) {
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
-			var selections = ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
+			await var selections = ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
 			console.log(selections);
 			
 			ds.getResultSet().then(
