@@ -23,7 +23,7 @@
 					console.log(resultSet);
 					
 					//First element of the array is column headers
-					let _stringArray = ["Month, Program, Account, Related Agency, Appropriation, Jurisdiction, Movement Account, Reason Code, Amount"];
+					let _stringArray = ["Month, Program, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, YTD Amount, Reason Code"];
 					
 					var i = 0;
 					//Create array of parsed rows
@@ -80,13 +80,14 @@
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
+		let _spp = "X";
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
 		let _reasonCode = "1038";
 
 
-		let rowElements = [_month, _program, _account, _related_agency, _appropriation, _jurisdiction, _movement_account, _reasonCode, _amount];
+		let rowElements = [_month, _program, _account, _related_agency, _spp, _appropriation, _jurisdiction, _movement_account, _amount, _reasonCode];
 
 		for (var i = 0; i < 9; i++) {
 			if (rowElements[i] === "#") {
