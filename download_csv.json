@@ -24,8 +24,8 @@
 		"runDownload" : {
 			"parameters": [
 				{"name": "table", "type": "Table"},
-				{"name": "description", "type": "String"},
-				{"name": "comment", "type": "String"}
+				{"name": "description", "type": "string"},
+				{"name": "comment", "type": "string"}
 				]
 		}
   },

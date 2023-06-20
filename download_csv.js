@@ -33,7 +33,7 @@
 
 							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
 								function(value) {
-									_stringArray.push(parseRow(result, value));
+									_stringArray.push(parseRow(result, value, description, comment));
 									console.log("Row " + (i+1).toString() + " parsed.");
 									i++;
 								}
@@ -58,7 +58,7 @@
 		}});	
 	
 	
-	function parseRow(row, acc_member, description, comment) {
+	function parseRow(row, acc_member, _description, _comment) {
 
 		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
 		
@@ -89,8 +89,6 @@
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
-		let _description = description;
-		let _comment = comment;
 		let _reasonCode = "1038";
 
 
