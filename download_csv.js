@@ -15,6 +15,7 @@
 			var resultSet = undefined;
 			var ds = table.getDataSource()
 			var selections = ds.getDataSelections({"@MeasureDimension" : "AMOUNT"})
+			console.log(selections);
 			
 			ds.getResultSet().then(
 				function(value) {
@@ -26,15 +27,19 @@
 					
 					var i = 0;
 					//Create array of parsed rows
-					for (const result of resultSet){
-						i++;
-						ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
-							function(value) {
-								_stringArray.push(parseRow(result), value);
-							});
-						console.log("Row " + i.toString() + " parsed.");
+					
+					(async function loop() {
+						for (const result of resultSet){
+							i++;
+							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
+								function(value) {
+									_stringArray.push(parseRow(result), value);
+									console.log("Row " + i.toString() + " parsed.");
+								}
+							);
+						}
+						console.log(_stringArray);
 					}
-					console.log(_stringArray);
 					
 					
 					//Join into a single string
@@ -48,6 +53,7 @@
 					window.open(window.URL.createObjectURL(blob));
 			});
 		}});	
+	
 	
 	function parseRow(row, acc_member) {
 
