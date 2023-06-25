@@ -43,7 +43,7 @@
 										we do this by storing the previous row and checking it against the new one.
 										We also need to store an array of the amounts for each year so we can add them to the one string.
 									**/
-									if (table_type === "Annual_Estimates") {
+									if (table_type === "Annual Estimates") {
 										if (prev_row === []){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
@@ -87,9 +87,6 @@
 	function parseRow(row, acc_member, _description, _comment, table_type) {
 		let rowString = ""
 		switch (table_type) {
-			case "Annual Estimates":
-				rowString = parseAnnEstRow(row, acc_member, _description, _comment);
-				break;
 			case "Monthly Profile":
 				rowString = parseMonProRow(row, acc_member, _description, _comment);
 				break;
