@@ -51,8 +51,9 @@
 										else if (prev_row["GOVERP_CBMSACCOUNT"].id === result["GOVERP_CBMSACCOUNT"].id){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
-										else if (prev_row["GOVERP_CBMSACCOUNT"].id !== result["GOVERP_CBMSACCOUNT"].id){
+										else if (prev_row["GOVERP_CBMSACCOUNT"].id !== result["GOVERP_CBMSACCOUNT"].id){ 
 											_stringArray.push(parseAnnEstRow(prev_row, acc_member, _description, _comment, amount_array));
+											amount_array = [];
 											console.log("Row " + (i+1).toString() + " parsed.");
 											i++;
 										}
@@ -114,8 +115,12 @@
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
 		let _measure = row["GOVERP_MEASURECODE"].id;
 		
+		console.log(amount_array);
+		
 		// Pad the end of the amount array with blank strings
 		amount_array = Object.assign(new Array(15).fill('') , amount_array)
+		
+		console.log(amount_array);
 		
 		//Amount columns
 		let _rb_amount = amount_array[0];
