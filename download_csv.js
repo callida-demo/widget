@@ -123,6 +123,19 @@
 		
 		console.log(amount_array);
 		
+		let indicator = acc_member.properties["GOVERP_CBMSACCOUNT.INDICATOR"];
+		let mv_indicator = row["GOVERP_MOVEMENTACCOUNT"].properties["GOVERP_MOVEMENTACCOUNT.INDICATOR"];
+		
+		if (mv_indicator !== "") {
+			indicator = mv_indicator;
+		}
+		
+		for (int j = 0; j < amount_array.length; j++) {
+			if (indicator === "CR") {
+				amount_array[j] = -amount_array[j];
+			}
+		}
+		
 		//Amount columns
 		let _rb_amount = amount_array[0];
 		let _nb_amount = amount_array[1];
@@ -173,6 +186,52 @@
 		
 		rowString = joinRowElements(rowElements);		
 		return rowString;
+	}
+	
+	function parseAnnActRow(row, acc_member, _description, _comment) {
+		let _program = row["GOVERP_PROGRAM"].id;
+		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
+		let _journal_title = "Title";
+		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
+		let _spp = row["GOVERP_SPP"].id.replace('-', '');
+		let _appropriation = row["GOVERP_APPROPRIATION"].id;
+		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
+		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
+		let _reasonCode = "1038";
+		
+		let indicator = acc_member.properties["GOVERP_CBMSACCOUNT.INDICATOR"];
+		let mv_indicator = row["GOVERP_MOVEMENTACCOUNT"].properties["GOVERP_MOVEMENTACCOUNT.INDICATOR"];
+		
+		if (mv_indicator !== "") {
+			indicator = mv_indicator;
+		}
+		
+		let _amount = row["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
+		if (indicator === "CR") {
+			_amount = -_amount;
+		}
+		
+		
+		// Row elements must be in same order as header string!
+		let rowElements = [
+		_program, 
+		_account, 
+		_description,
+		_related_agency, 
+		_spp, 
+		_appropriation, 
+		_jurisdiction, 
+		_movement_account,
+		_description,  
+		_amount, 
+		_reasonCode
+		];
+		
+		rowString = joinRowElements(rowElements);
+		
+		return rowString;		
+		
+		
 	}
 	
 	function parseMonProRow(row, acc_member, _description, _comment) {
@@ -242,14 +301,11 @@
 			case "Annual Estimates": 
 				_stringArray = ["Program, Reason Code, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Measure, Adjustment Description, Cmt_Justification, RB Amount, NB Amount, FE 1, FE 2, FE 3, FE 4, FE 5, FE 6, FE 7, FE 8, FE 9, FE 10, FE 11, FE 12, FE 13"];				
 				break;
-			case "Monthly Profile":						
+			case "Monthly":						
 				_stringArray = ["Month, Program, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Adjustment Description, Cmt_Justification, YTD Amount, Reason Code"];
 				break;
 			case "Annual Actuals":
 				_stringArray = ["Program, Account, Journal Title, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Cmt_Justification, Amount, Reason Code"];
-				break;
-			case "Monhly Actuals":
-				_stringArray = ["Month, Program, Account, Related Agency, SPP , Appropriation, Jurisdiction, Movement Account, Reason Code, Journal Title, Cmt_Justification, YTD Amount"];
 				break;
 		}
 		return _stringArray;
