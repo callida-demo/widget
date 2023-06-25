@@ -227,7 +227,7 @@
 			}
 		}
 		
-		return rowElements.join(",");
+		return row_elements.join(",");
 	}
 
 	function getTableHeaders(table_type) {
