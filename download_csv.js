@@ -45,15 +45,18 @@
 									**/
 									if (table_type === "Annual Estimates") {
 										console.log(prev_row);
+										// If this is the first row we're parsing
 										if (prev_row == null){
 											console.log("Parsing first row.");
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
-										else if (prev_row["GOVERP_CBMSACCOUNT"].id === result["GOVERP_CBMSACCOUNT"].id){
+										// If row is part of same entry
+										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].desc) > parseInt(result["GOVERP_FISCALYEAR_EXT"].desc)){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
-										else if (prev_row["GOVERP_CBMSACCOUNT"].id !== result["GOVERP_CBMSACCOUNT"].id){ 
-											_stringArray.push(parseAnnEstRow(prev_row, value, description, comment, amount_array));
+										// If row is the first element of a new entry
+										else { 
+											_stringArray.push(parseAnnEstRow(prev_row, value, amount_array));
 											amount_array = [];
 											console.log("Row " + (i+1).toString() + " parsed.");
 											i++;
@@ -102,7 +105,7 @@
 		return rowString;
 	}
 	
-	function parseAnnEstRow(row, acc_member, _description, _comment, amount_array) {
+	function parseAnnEstRow(row, acc_member, amount_array) {
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _reasonCode = row["GOVERP_REASONCODE"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
@@ -112,6 +115,8 @@
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
 		let _measure = row["GOVERP_MEASURECODE"].id;
+		let _description = row["GOVERP_BATCH"].description;
+		let _comment = row["GOVERP_BATCH.COMMENT"].description;
 		
 		console.log(amount_array);
 		
