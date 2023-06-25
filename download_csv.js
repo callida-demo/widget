@@ -93,14 +93,11 @@
 	function parseRow(row, acc_member, _description, _comment, table_type) {
 		let rowString = ""
 		switch (table_type) {
-			case "Monthly Profile":
+			case "Monthly":
 				rowString = parseMonProRow(row, acc_member, _description, _comment);
 				break;
 			case "Annual Actuals":
 				rowString = parseAnnActRow(row, acc_member, _description, _comment);
-				break;
-			case "Monthly Actuals":
-				rowString = parseMonActRow(row, acc_member, _description, _comment);
 				break;
 		}
 		return rowString;
