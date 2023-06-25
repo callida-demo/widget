@@ -44,6 +44,7 @@
 										We also need to store an array of the amounts for each year so we can add them to the one string.
 									**/
 									if (table_type === "Annual Estimates") {
+										console.log(prev_row);
 										if (prev_row === []){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
