@@ -51,7 +51,7 @@
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is part of same entry
-										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].desc) > parseInt(result["GOVERP_FISCALYEAR_EXT"].desc)){
+										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].desc) < parseInt(result["GOVERP_FISCALYEAR_EXT"].desc)){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is the first element of a new entry
