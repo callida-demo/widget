@@ -27,10 +27,9 @@
 
 					
 					//Need to do a little extra work to account for multiple amount columns in annual estimates.
-					if (table_type === "Annual_Estimates"){
-						var prev_row = [];
-						var amount_array = [];
-					}
+					var amount_array = [];
+					var prev_row = [];			
+					console.log(amount_array);
 					
 					var i = 0;
 					//Create array of parsed rows
