@@ -212,7 +212,6 @@
 		_amount, 
 		_reasonCode
 		];
-		break;		
 		
 		rowString = joinRowElements(rowElements);
 		
