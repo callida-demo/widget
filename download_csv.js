@@ -222,8 +222,8 @@
 	function joinRowElements(row_elements) {
 		// Replace null values with blanks as per CBMS format requirements.
 		for (var i = 0; i < 9; i++) {
-			if (rowElements[i] === "#") {
-				rowElements[i] = "";
+			if (row_elements[i] === "#") {
+				row_elements[i] = "";
 			}
 		}
 		
