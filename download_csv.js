@@ -28,7 +28,7 @@
 					
 					//Need to do a little extra work to account for multiple amount columns in annual estimates.
 					var amount_array = [];
-					var prev_row = [];			
+					var prev_row = undefined;			
 					console.log(amount_array);
 					
 					var i = 0;
@@ -45,7 +45,8 @@
 									**/
 									if (table_type === "Annual Estimates") {
 										console.log(prev_row);
-										if (prev_row === []){
+										if (prev_row == null){
+											console.log("Parsing first row.");
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										else if (prev_row["GOVERP_CBMSACCOUNT"].id === result["GOVERP_CBMSACCOUNT"].id){
