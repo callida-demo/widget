@@ -173,7 +173,7 @@
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
-		let _spp = "X";
+		let _spp = row["GOVERP_SPP"].replace('-', '');
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
 		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
 		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
