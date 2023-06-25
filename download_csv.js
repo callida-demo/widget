@@ -130,7 +130,7 @@
 			indicator = mv_indicator;
 		}
 		
-		for (int j = 0; j < amount_array.length; j++) {
+		for (var j = 0; j < amount_array.length; j++) {
 			if (indicator === "CR") {
 				amount_array[j] = -amount_array[j];
 			}
