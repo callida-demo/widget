@@ -23,18 +23,45 @@
 					console.log(resultSet);
 					
 					//First element of the array is column headers
+					var _stringArray = getTableHeaders(table_type);
 
+					
+					//Need to do a little extra work to account for multiple amount columns in annual estimates.
+					if (table_type === "Annual_Estimates"){
+						var prev_row = [];
+						var amount_array = [];
+					}
+					
 					var i = 0;
 					//Create array of parsed rows
-					
 					(async function loop() {
 						for (const result of resultSet){
-
 							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
 								function(value) {
-									_stringArray.push(parseRow(result, value, description, comment, table_type));
-									console.log("Row " + (i+1).toString() + " parsed.");
-									i++;
+									/** Look, it's pretty hacky but it should work.
+										The annual estimates table sends an array element for each year column with an amount in it.
+										So we need to check when a new row actually starts.
+										we do this by storing the previous row and checking it against the new one.
+										We also need to store an array of the amounts for each year so we can add them to the one string.
+									**/
+									if (table_table === "Annual_Estimates") {
+										if (prev_row === []){
+											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
+										}
+										else if (prev_row["GOVERP_CBMSACCOUNT"].id === result["GOVERP_CBMSACCOUNT"].id){
+											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
+										}
+										else if (prev_row["GOVERP_CBMSACCOUNT"].id !== result["GOVERP_CBMSACCOUNT"].id){
+											_stringArray.push(parseAnnEstRow(prev_row, acc_member, _description, _comment, amount_array));
+											console.log("Row " + (i+1).toString() + " parsed.");
+											i++;
+										}
+										prev_row = result;
+									} else {
+										_stringArray.push(parseRow(result, value, description, comment, table_type));
+										console.log("Row " + (i+1).toString() + " parsed.");
+										i++;
+									}
 								}
 							);
 						}
@@ -75,14 +102,73 @@
 		return rowString;
 	}
 	
-	function parseAnnEstRow(row, acc_member, _description, _comment) {
-		let rowString = "";
+	function parseAnnEstRow(row, acc_member, _description, _comment, amount_array) {
+		let _program = row["GOVERP_PROGRAM"].id;
+		let _reasonCode = row["GOVERP_REASONCODE"].id;
+		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
+		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
+		let _spp = row["GOVERP_SPP"].id;
+		let _appropriation = row["GOVERP_APPROPRIATION"].id;
+		let _jurisdiction = row["GOVERP_JURISDICTION"].id;
+		let _movement_account = row["GOVERP_MOVEMENTACCOUNT"].id;
+		let _measure = row["GOVERP_MEASURECODE"].id;
+		
+		// Pad the end of the amount array with blank strings
+		amount_array = Object.assign(new Array(15).fill('') , amount_array)
+		
+		//Amount columns
+		let _rb_amount = amount_array[0];
+		let _nb_amount = amount_array[1];
+		let _fe_1 = amount_array[2];
+		let _fe_2 = amount_array[3];
+		let _fe_3 = amount_array[4];
+		let _fe_4 = amount_array[5];
+		let _fe_5 = amount_array[6];
+		let _fe_6 = amount_array[7];
+		let _fe_7 = amount_array[8];
+		let _fe_8 = amount_array[9];
+		let _fe_9 = amount_array[10];
+		let _fe_10 = amount_array[11];
+		let _fe_11 = amount_array[12];
+		let _fe_12 = amount_array[13];
+		let _fe_13 = amount_array[14];
+		
+		["Program, Reason Code, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Measure, Adjustment Description, Cmt_Justification, RB Amount, NB Amount, FE 1, FE 2, FE 3, FE 4, FE 5, FE 6, FE 7, FE 8, FE 9, FE 10, FE 11, FE 12, FE 13"];	
+		// Row elements must be in same order as header string!!
+		let rowElements = [
+			_program,
+			_reasonCode,
+			_account,
+			_related_agency,
+			_spp,
+			_appropriation,
+			_jurisdiction,
+			_movement_account,
+			_measure,
+			_description,
+			_comment,
+			_rb_amount,
+			_nb_amount,
+			_fe1,
+			_fe2,
+			_fe3,
+			_fe4,
+			_fe5,
+			_fe6,
+			_fe7,
+			_fe8,
+			_fe9,
+			_fe10,
+			_fe11,
+			_fe12,
+			_fe13
+		]
+		
+		rowString = joinRowElements(rowElements);		
 		return rowString;
 	}
 	
 	function parseMonProRow(row, acc_member, _description, _comment) {
-		let rowString = "";
-		
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;

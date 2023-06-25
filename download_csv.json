@@ -26,7 +26,7 @@
 				{"name": "table", "type": "Table"},
 				{"name": "description", "type": "string"},
 				{"name": "comment", "type": "string"},
-				{"name": "annual_or_monthly", "type": "string"}
+				{"name": "table_type", "type": "string"}
 				]
 		}
   },
