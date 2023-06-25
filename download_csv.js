@@ -120,19 +120,19 @@
 		//Amount columns
 		let _rb_amount = amount_array[0];
 		let _nb_amount = amount_array[1];
-		let _fe_1 = amount_array[2];
-		let _fe_2 = amount_array[3];
-		let _fe_3 = amount_array[4];
-		let _fe_4 = amount_array[5];
-		let _fe_5 = amount_array[6];
-		let _fe_6 = amount_array[7];
-		let _fe_7 = amount_array[8];
-		let _fe_8 = amount_array[9];
-		let _fe_9 = amount_array[10];
-		let _fe_10 = amount_array[11];
-		let _fe_11 = amount_array[12];
-		let _fe_12 = amount_array[13];
-		let _fe_13 = amount_array[14];
+		let _fe1 = amount_array[2];
+		let _fe2 = amount_array[3];
+		let _fe3 = amount_array[4];
+		let _fe4 = amount_array[5];
+		let _fe5 = amount_array[6];
+		let _fe6 = amount_array[7];
+		let _fe7 = amount_array[8];
+		let _fe8 = amount_array[9];
+		let _fe9 = amount_array[10];
+		let _fe10 = amount_array[11];
+		let _fe11 = amount_array[12];
+		let _fe12 = amount_array[13];
+		let _fe13 = amount_array[14];
 		
 		["Program, Reason Code, Account, Related Agency, SPP, Appropriation, Jurisdiction, Movement Account, Measure, Adjustment Description, Cmt_Justification, RB Amount, NB Amount, FE 1, FE 2, FE 3, FE 4, FE 5, FE 6, FE 7, FE 8, FE 9, FE 10, FE 11, FE 12, FE 13"];	
 		// Row elements must be in same order as header string!!
