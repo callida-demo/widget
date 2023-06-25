@@ -99,6 +99,7 @@
 			case "Monthly Actuals":
 				rowString = parseMonActRow(row, acc_member, _description, _comment);
 				break;
+		}
 		return rowString;
 	}
 	
