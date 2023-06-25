@@ -53,7 +53,7 @@
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										else if (prev_row["GOVERP_CBMSACCOUNT"].id !== result["GOVERP_CBMSACCOUNT"].id){ 
-											_stringArray.push(parseAnnEstRow(prev_row, value, _description, _comment, amount_array));
+											_stringArray.push(parseAnnEstRow(prev_row, value, description, comment, amount_array));
 											amount_array = [];
 											console.log("Row " + (i+1).toString() + " parsed.");
 											i++;
