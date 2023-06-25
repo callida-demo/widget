@@ -188,10 +188,9 @@
 		return rowString;
 	}
 	
-	function parseAnnActRow(row, acc_member, _description, _comment) {
+	function parseAnnActRow(row, acc_member, _title, _comment) {
 		let _program = row["GOVERP_PROGRAM"].id;
 		let _account = row["GOVERP_CBMSACCOUNT"].id.split('&')[1].replace('[', '').replace(']', '');
-		let _journal_title = "Title";
 		let _related_agency = row["GOVERP_RELATEDAGENCY"].id;
 		let _spp = row["GOVERP_SPP"].id.replace('-', '');
 		let _appropriation = row["GOVERP_APPROPRIATION"].id;
@@ -216,7 +215,7 @@
 		let rowElements = [
 		_program, 
 		_account, 
-		_description,
+		_title,
 		_related_agency, 
 		_spp, 
 		_appropriation, 
