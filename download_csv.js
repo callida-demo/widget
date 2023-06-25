@@ -37,7 +37,8 @@
 						for (const result of resultSet){
 							await ds.getResultMember("GOVERP_CBMSACCOUNT", selections[i]).then(
 								function(value) {
-									/** Look, it's pretty hacky but it should work.
+									/** 
+										Look, it's pretty hacky but it should work.
 										The annual estimates table sends an array element for each year column with an amount in it.
 										So we need to check when a new row actually starts.
 										we do this by storing the previous row and checking it against the new one.
@@ -51,7 +52,7 @@
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is part of same entry
-										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].desc) < parseInt(result["GOVERP_FISCALYEAR_EXT"].desc)){
+										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].description) < parseInt(result["GOVERP_FISCALYEAR_EXT"].description)){
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is the first element of a new entry
