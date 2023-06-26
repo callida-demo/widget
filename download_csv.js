@@ -10,7 +10,25 @@
 			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
 		
-		async runDownload(table, description, comment, table_type, start_year) {
+		var saveData= (function() {
+			var a = document.createElement("a");
+			document.body.appendChild(a)
+			a.style = "display: none";
+			
+			console.log("Saving...");
+			
+			return function(data, filename) {
+				var csv = data,
+					blob = new Blob([data], {type: "text/csv"}),
+					url = window.URL.createObjectURL(blob);
+				a.href = url;
+				a.download = filename;
+				a.click();
+				window.URL.revokeObjectURL(url);
+			}
+		}());
+		
+		async runDownload(table, description, comment, table_type, start_year, filename) {
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
@@ -75,13 +93,7 @@
 						console.log(_stringArray);					
 						//Join into a single string1
 						let csvContent = _stringArray.join("\r\n");
-
-						console.log(csvContent);
-
-						var blob = new Blob([csvContent], {type: "text/csv"});
-						console.log("Saving...");					
-
-						window.open(window.URL.createObjectURL(blob));
+						saveData(csvContent, filename);
 					})();
 					
 					
@@ -90,6 +102,8 @@
 			});
 		}});	
 	
+	
+
 	
 	function parseRow(row, acc_member, _description, _comment, table_type) {
 		let rowString = ""

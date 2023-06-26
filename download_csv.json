@@ -27,7 +27,8 @@
 				{"name": "description", "type": "string"},
 				{"name": "comment", "type": "string"},
 				{"name": "table_type", "type": "string"},
-				{"name": "start_year", "type": "string"}
+				{"name": "start_year", "type": "string"},
+				{"name": "filename", "type": "string"}
 				]
 		}
   },
