@@ -9,26 +9,26 @@
 			this._shadowRoot = this.attachShadow({mode: "open"});
 			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
-		
-		var saveData= (function() {
-			var a = document.createElement("a");
-			document.body.appendChild(a)
-			a.style = "display: none";
-			
-			console.log("Saving...");
-			
-			return function(data, filename) {
-				var csv = data,
-					blob = new Blob([data], {type: "text/csv"}),
-					url = window.URL.createObjectURL(blob);
-				a.href = url;
-				a.download = filename;
-				a.click();
-				window.URL.revokeObjectURL(url);
-			}
-		}());
-		
+				
 		async runDownload(table, description, comment, table_type, start_year, filename) {
+			
+			var saveData= (function() {
+				var a = document.createElement("a");
+				document.body.appendChild(a)
+				a.style = "display: none";
+				
+				console.log("Saving...");
+				
+				return function(data, filename) {
+					var csv = data,
+						blob = new Blob([data], {type: "text/csv"}),
+						url = window.URL.createObjectURL(blob);
+					a.href = url;
+					a.download = filename;
+					a.click();
+					window.URL.revokeObjectURL(url);
+				}
+			}());
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
@@ -101,9 +101,6 @@
 
 			});
 		}});	
-	
-	
-
 	
 	function parseRow(row, acc_member, _description, _comment, table_type) {
 		let rowString = ""
