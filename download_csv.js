@@ -130,11 +130,13 @@
 		if (mv_indicator !== "") {
 			indicator = mv_indicator;
 		}
-		
-		for (var j = 0; j < amount_array.length; j++) {
-			if (indicator === "CR") {
-				amount_array[j] = -amount_array[j];
-			}
+
+		if (indicator === "CR") {		
+			for (var j = 0; j < amount_array.length; j++) {
+					if (amount_array[j] !== '') {
+						amount_array[j] = -amount_array[j];
+					}
+				}
 		}
 		
 		//Amount columns
