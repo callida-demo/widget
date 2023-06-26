@@ -10,7 +10,7 @@
 			this._shadowRoot.appendChild(template.content.cloneNode(true));
 		}
 		
-		async runDownload(table, description, comment, table_type) {
+		async runDownload(table, description, comment, table_type, start_year) {
 			
 			var resultSet = undefined;
 			var ds = table.getDataSource()
@@ -46,14 +46,15 @@
 									**/
 									if (table_type === "Annual Estimates") {
 										console.log(prev_row);
+										var year = parseInt(result["GOVERP_FISCALYEAR_EXT"].description)
 										// If this is the first row we're parsing
 										if (prev_row == null){
 											console.log("Parsing first row.");
 											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is part of same entry
-										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].description) < parseInt(result["GOVERP_FISCALYEAR_EXT"].description)){
-											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
+										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].description) < year)){
+											amount_array[year - start_year] = result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
 										}
 										// If row is the first element of a new entry
 										else { 
