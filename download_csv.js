@@ -50,7 +50,7 @@
 										// If this is the first row we're parsing
 										if (prev_row == null){
 											console.log("Parsing first row.");
-											amount_array.push(result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', ''));
+											amount_array[year - start_year] = result["GOVERP_CBMSACCOUNT"].formattedValue.replace(',', '');
 										}
 										// If row is part of same entry
 										else if (parseInt(prev_row["GOVERP_FISCALYEAR_EXT"].description) < year){
