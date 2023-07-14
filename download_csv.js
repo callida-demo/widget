@@ -238,7 +238,7 @@
 		_appropriation, 
 		_jurisdiction, 
 		_movement_account,
-		_description,  
+		_comment,  
 		_amount, 
 		_reasonCode
 		];
